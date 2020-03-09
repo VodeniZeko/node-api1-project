@@ -10,13 +10,13 @@ const PORT = 8000; //this is our port on which we listen
 
 let users = [];
 server.post("/api/users", (req, res) => {
-  const userInfo = req.body;
-  if (!userInfo.name || !userInfo.bio) {
+  const usersInfo = req.body;
+  if (!usersInfo.name || !usersInfo.bio) {
     res.status(422).send("you need name and a bio !");
   }
-  userInfo.id = shortid();
+  usersInfo.id = shortid.generate();
   users.push(usersInfo);
-  res.status(201).json(users);
+  res.status(201).json(usersInfo);
 });
 
 server.get("/api/users", (req, res) => {
